@@ -1,0 +1,13 @@
+$body = @{
+    name = "Dr. Alice"
+    specialty = "Cardiology"
+    wallet_address ="0x9c22053334cFE86f54252BF3acAc8F21202D3d36"
+    registered_by ="0x546AD7E6b4a2304b11e3d5A635A13670f8D9f4d2"
+    role = "doctor"
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+    -Uri "http://127.0.0.1:5000/admin/register_doctor" `
+    -Method Post `
+    -ContentType "application/json" `
+    -Body $body

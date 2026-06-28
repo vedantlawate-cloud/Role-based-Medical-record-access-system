@@ -1,0 +1,633 @@
+#root {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  border: 0;
+  text-align: left;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 34rem),
+    radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.16), transparent 30rem),
+    #09111f;
+  color: #d8e4f2;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: rgba(5, 12, 24, 0.88);
+  border-right: 1px solid rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(18px);
+}
+
+.brand-card,
+.network-card,
+.card,
+.metric-card,
+.notice {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.brand-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 24px;
+}
+
+.brand-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: #082f49;
+  background: linear-gradient(135deg, #67e8f9, #60a5fa);
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #7dd3fc;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: #f8fafc;
+  letter-spacing: -0.04em;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 1;
+}
+
+h2 {
+  font-size: clamp(30px, 4vw, 48px);
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+p,
+small,
+span {
+  color: #aab8cc;
+}
+
+.role-nav {
+  display: grid;
+  gap: 12px;
+}
+
+.role-tab {
+  width: 100%;
+  padding: 16px;
+  display: grid;
+  gap: 7px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 18px;
+  color: #cbd5e1;
+  background: rgba(15, 23, 42, 0.46);
+  text-align: left;
+  transition:
+    border 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.role-tab:hover {
+  transform: translateY(-1px);
+  border-color: rgba(125, 211, 252, 0.38);
+}
+
+.role-tab strong {
+  color: #f8fafc;
+}
+
+.role-tab span {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.role-tab.active {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(20, 184, 166, 0.14));
+  border-color: rgba(125, 211, 252, 0.55);
+}
+
+.network-card {
+  margin-top: auto;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.network-card strong,
+.network-card small {
+  display: block;
+}
+
+.pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #34d399;
+  box-shadow: 0 0 0 8px rgba(52, 211, 153, 0.12);
+}
+
+.workspace {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 28px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.ghost-button,
+.primary-button,
+.secondary-button,
+.danger-button,
+.mini-danger {
+  border: 0;
+  border-radius: 14px;
+  font-weight: 800;
+}
+
+.ghost-button {
+  padding: 12px 16px;
+  color: #dbeafe;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.primary-button {
+  padding: 13px 18px;
+  color: #04111f;
+  background: linear-gradient(135deg, #67e8f9, #60a5fa);
+}
+
+.secondary-button {
+  padding: 11px 14px;
+  color: #dbeafe;
+  background: rgba(37, 99, 235, 0.22);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+}
+
+.danger-button,
+.mini-danger {
+  color: #fff1f2;
+  background: linear-gradient(135deg, #ef4444, #f97316);
+}
+
+.danger-button {
+  padding: 13px 18px;
+}
+
+.mini-danger {
+  padding: 8px 11px;
+  font-size: 13px;
+}
+
+.notice {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  color: #dff6ff;
+  text-align: left;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.wide,
+.metric-grid {
+  grid-column: 1 / -1;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric-card {
+  padding: 18px;
+  border-radius: 22px;
+}
+
+.metric-card strong {
+  display: block;
+  color: #f8fafc;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.metric-card span {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.card {
+  padding: 22px;
+  border-radius: 28px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #bfdbfe;
+  background: rgba(37, 99, 235, 0.18);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.tag.danger {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.assignment-form,
+.health-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.stacked-form,
+.selectors-compact {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field span {
+  color: #dbeafe;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  outline: 0;
+  color: #f8fafc;
+  background: rgba(2, 6, 23, 0.52);
+}
+
+input,
+select {
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+textarea {
+  min-height: 96px;
+  padding: 13px 14px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+.health-form {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.health-form textarea {
+  grid-column: span 1;
+}
+
+.health-form .primary-button {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.doctor-hero,
+.patient-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 24px;
+  align-items: center;
+}
+
+.doctor-hero p,
+.patient-hero p {
+  margin-top: 10px;
+  max-width: 760px;
+}
+
+.assignment-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.assignment-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(2, 6, 23, 0.34);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.assignment-card strong {
+  color: #f8fafc;
+}
+
+.assignment-card p {
+  margin: 4px 0;
+}
+
+.danger-card {
+  border-color: rgba(248, 113, 113, 0.26);
+  background: rgba(69, 10, 10, 0.26);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 13px 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.13);
+  text-align: left;
+}
+
+th {
+  color: #93c5fd;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+td {
+  color: #dbeafe;
+}
+
+.status-pill {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.status-pill.active {
+  color: #bbf7d0;
+  background: rgba(22, 163, 74, 0.18);
+}
+
+.status-pill.revoked {
+  color: #fecaca;
+  background: rgba(220, 38, 38, 0.18);
+}
+
+.muted {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.timeline {
+  display: grid;
+  gap: 12px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: #60a5fa;
+}
+
+.timeline-dot.denied,
+.timeline-dot.consent_revoked {
+  background: #fb7185;
+}
+
+.timeline-dot.emergency_override {
+  background: #fb923c;
+}
+
+.timeline-dot.granted,
+.timeline-dot.consent_granted {
+  background: #34d399;
+}
+
+.timeline-item strong {
+  color: #f8fafc;
+  text-transform: capitalize;
+}
+
+.timeline-item p {
+  margin: 4px 0;
+}
+
+.timeline-item time {
+  color: #94a3b8;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  min-height: 140px;
+  color: #94a3b8;
+  border: 1px dashed rgba(148, 163, 184, 0.24);
+  border-radius: 22px;
+  background: rgba(2, 6, 23, 0.2);
+  text-align: center;
+}
+
+.empty-state span {
+  color: #38bdf8;
+  font-size: 30px;
+}
+
+.health-summary {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.health-summary article {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.32);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.health-summary span {
+  display: block;
+  color: #93c5fd;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.health-summary p {
+  color: #dbeafe;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 1080px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+  }
+
+  .role-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .network-card {
+    margin-top: 0;
+  }
+
+  .assignment-form,
+  .health-form,
+  .doctor-hero,
+  .patient-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .workspace,
+  .sidebar {
+    padding: 16px;
+  }
+
+  .topbar,
+  .section-heading,
+  .assignment-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-grid,
+  .metric-grid,
+  .role-nav,
+  .assignment-list {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    grid-template-columns: 14px minmax(0, 1fr);
+  }
+
+  .timeline-item time {
+    grid-column: 2;
+  }
+}
