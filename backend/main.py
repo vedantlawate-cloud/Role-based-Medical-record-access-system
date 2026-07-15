@@ -15,6 +15,7 @@ Every grant/revoke/access attempt is written to the AccessLog table
 AND (eventually) mirrored on-chain via blockchain.py + AuditLog.sol.
 """
 
+import os 
 from datetime import datetime
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -28,7 +29,10 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///medical_access.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
+    "DATABASE_URL",
+    "sqlite:///medical_access.db"
+)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
